@@ -3,26 +3,15 @@ window.addEventListener('load', function() {
   const loadingPage = document.querySelector('.loading-page');
   const progressBar = document.querySelector('.progress');
   
-  // Simulate loading progress
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.random() * 15;
-    progressBar.style.width = `${Math.min(progress, 100)}%`;
-    
-    if (progress >= 100) {
-      clearInterval(interval);
-      setTimeout(() => {
-        loadingPage.style.opacity = '0';
-        loadingPage.style.visibility = 'hidden';
-        
-        // Enable scrolling after loading
-        document.body.style.overflow = 'auto';
-      }, 0);
-    }
-  }, 0);
+  // Immediately set progress to 100%
+  progressBar.style.width = '100%';
   
-  // Disable scrolling during loading
-  document.body.style.overflow = 'hidden';
+  // Hide loading page immediately
+  loadingPage.style.opacity = '0';
+  loadingPage.style.visibility = 'hidden';
+  
+  // Enable scrolling immediately
+  document.body.style.overflow = 'auto';
   
   // Character interaction
   const character = document.querySelector('.character');
