@@ -130,3 +130,6 @@ window.addEventListener('scroll', function() {
 backButton.style.opacity = '0';
 backButton.style.visibility = 'hidden';
 backButton.style.transition = 'all 0.3s ease';
+document.querySelector('.mobile-menu').addEventListener('click', function() {
+    document.querySelector('.navbar').classList.toggle('active');
+});

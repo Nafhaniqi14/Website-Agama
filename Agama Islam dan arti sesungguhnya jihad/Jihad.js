@@ -129,3 +129,29 @@ window.addEventListener('scroll', function() {
 backButton.style.opacity = '0';
 backButton.style.visibility = 'hidden';
 backButton.style.transition = 'all 0.3s ease';
+// Mobile menu toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu');
+const navbar = document.querySelector('.navbar ul');
+
+mobileMenuBtn.addEventListener('click', function() {
+    navbar.classList.toggle('show');
+});
+
+// Close mobile menu when clicking on a link
+const navLinks = document.querySelectorAll('.navbar ul li a');
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        if (window.innerWidth <= 992) {
+            navbar.classList.remove('show');
+        }
+    });
+});
+
+// Responsive navbar - close menu when resizing to larger screen
+function handleResponsiveNavbar() {
+    if (window.innerWidth > 992) {
+        navbar.classList.remove('show');
+    }
+}
+
+window.addEventListener('resize', handleResponsiveNavbar);
