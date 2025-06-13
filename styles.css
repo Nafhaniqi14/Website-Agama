@@ -238,71 +238,7 @@ img {
   transform: translateY(-2px);
 }
 
-/* Mobile Sidebar Styles */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  width: 280px;
-  height: 100%;
-  background-color: var(--white);
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
-  transition: left 0.3s ease;
-  overflow-y: auto;
-  padding: 20px;
-}
-
-.sidebar.active {
-  left: 0;
-}
-
-.sidebar-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--text-light);
-}
-
-.sidebar-nav ul li {
-  margin-bottom: 15px;
-}
-
-.sidebar-nav ul li a {
-  display: block;
-  padding: 10px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  color: var(--text-color);
-}
-
-.sidebar-nav ul li a:hover,
-.sidebar-nav ul li a.active {
-  background-color: rgba(46, 139, 87, 0.1);
-  color: var(--primary-color);
-}
-
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-}
-
-.sidebar-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Header Styles */
+/* Header & Navbar Styles */
 .header {
   background-color: var(--white);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -317,6 +253,7 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 15px 0;
+  position: relative;
 }
 
 .logo h1 {
@@ -325,24 +262,34 @@ img {
   font-weight: 700;
 }
 
+/* Main Navigation */
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
 .navbar ul {
   display: flex;
+  list-style: none;
 }
 
 .navbar ul li {
   margin: 0 15px;
+  position: relative;
 }
 
 .navbar ul li a {
   font-weight: 500;
   transition: color 0.3s ease;
   position: relative;
+  display: block;
+  padding: 5px 0;
 }
 
 .navbar ul li a::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
@@ -360,6 +307,84 @@ img {
 
 .navbar ul li a.active::after {
   width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--primary-color);
+  z-index: 1001;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--white);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 80px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .navbar.active {
+    right: 0;
+  }
+  
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .navbar ul li {
+    margin: 0 0 15px 0;
+  }
+  
+  .navbar ul li a {
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .navbar ul li a:hover {
+    background-color: rgba(46, 139, 87, 0.1);
+  }
+  
+  .navbar ul li a::after {
+    display: none;
+  }
+  
+  /* Overlay when menu is open */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .search-box {
@@ -380,12 +405,6 @@ img {
   border: none;
   padding: 8px 15px;
   border-radius: 0 5px 5px 0;
-  cursor: pointer;
-}
-
-.mobile-menu {
-  display: none;
-  font-size: 24px;
   cursor: pointer;
 }
 
@@ -610,6 +629,7 @@ img {
   font-size: 24px;
   color: var(--dark-color);
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .dosen-title {
@@ -913,13 +933,9 @@ img {
   }
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: block;
+@media (max-width: 576px) {
+  .hero {
+    padding: 100px 0 40px;
   }
 
   .hero-content h2 {
@@ -930,22 +946,16 @@ img {
     font-size: 16px;
   }
 
+  .cta-button {
+    width: 100%;
+  }
+
   .category-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 
   .team-grid {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-}
-
-@media (max-width: 576px) {
-  .hero {
-    padding: 100px 0 40px;
-  }
-
-  .cta-button {
-    width: 100%;
   }
 
   .footer-grid {
@@ -997,7 +1007,7 @@ img {
   border-radius: 6px;
   padding: 5px;
   position: absolute;
-  z-index: 1;
+    z-index: 1;
   bottom: 125%;
   left: 50%;
   transform: translateX(-50%);
